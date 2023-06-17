@@ -104,7 +104,7 @@ class Solution{
         if(node==NULL)
         return 0;
         else
-        return (max(height(node->left),height(node->right))+1);
+        return (1+max(height(node->left),height(node->right)));
     }
 };
 
