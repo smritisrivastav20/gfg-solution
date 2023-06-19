@@ -40,44 +40,27 @@ struct Node
 */
 class Solution{
     public:
-    
+    int preindex=0;
+    Node *tree(int in[],int pre[],int is, int ie)
+    { 
+        if(is>ie)
+        return NULL;
+        Node *root=new Node(pre[preindex++]);
+        int inIndex;
+        for(int i=is;i<=ie;i++)
+        {
+            if(in[i]==root->data)
+        {inIndex=i;
+            break;}
+        }
+        root->left=tree(in,pre,is,inIndex-1);
+        root->right=tree(in,pre,inIndex+1,ie);
+        return root;
+    }
     Node* buildTree(int in[],int pre[], int n)
     {
         // Code here
-              if(n == 0){
-            return NULL;
-        }
-        
-        int index;
-        Node* root = new Node(pre[0]);
-        for(int i=0; i<n; i++){
-            if(in[i] == pre[0]){
-                index = i;
-                break;
-            }
-        }
-        
-        int leftIn[index], rightIn[n-index-1], leftPre[index], rightPre[n-index-1];
-        for(int i=0; i<n; i++){
-            if(i < index){
-                leftIn[i] = in[i];
-            }
-            if(i > index){
-                rightIn[i-index-1] = in[i];
-            }
-            if(i>0){
-                if(i <= index)
-                    leftPre[i-1] = pre[i];
-                else{
-                    rightPre[i-index-1] = pre[i];
-                }        
-            }
-        }
-        
-        root -> left = buildTree(leftIn, leftPre, index);
-        root -> right = buildTree(rightIn, rightPre, n - index -1);
-        
-        return root;
+         tree(in,pre,0, n-1);
     
     }
 };
