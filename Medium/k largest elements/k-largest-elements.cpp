@@ -10,15 +10,28 @@ class Solution{
 public:	
 	vector<int> kLargest(int arr[], int n, int k) {
 	    // code here
-	    sort(arr,arr+n, greater<int>());
-	    vector<int>p;
+	    vector<int>a;
+	    priority_queue<int,vector<int>,greater<int>>p;
 	    for(int i=0;i<k;i++)
+	    p.push(arr[i]);
+	    for(int i=k;i<n;i++)
 	    {
-	        p.push_back(arr[i]);
+	    if(p.top()>arr[i])
+	    {continue;
 	    }
-	    return p;
+	    else
+	    {
+	        p.pop();
+	        p.push(arr[i]);
+	    }
 	}
-
+ while(p.empty()==false){
+      a.push_back(p.top());
+	    p.pop();
+	}
+	reverse(a.begin(),a.end());
+	return a;
+ }
 };
 
 //{ Driver Code Starts.
