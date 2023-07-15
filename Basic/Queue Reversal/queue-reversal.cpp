@@ -3,7 +3,35 @@
 
 #include<bits/stdc++.h>
 using namespace std;
-queue<int> rev(queue<int> q);
+
+// } Driver Code Ends
+//function Template for C++
+
+//Function to reverse the queue.
+class Solution
+{
+    public:
+    queue<int> rev(queue<int> q)
+    {
+        // add code here.
+        stack<int>s;
+        while(!q.empty())
+        {
+           
+            s.push(q.front());
+            q.pop();
+        }
+        while(!s.empty())
+        {
+            q.push(s.top());
+            s.pop();
+        }
+        return q;
+    }
+};
+
+
+//{ Driver Code Starts.
 int main()
 {
     int test;
@@ -18,7 +46,8 @@ int main()
         cin>>var; 
         q.push(var);
     }
-    queue<int> a=rev(q); 
+    Solution ob;
+    queue<int> a=ob.rev(q); 
     while(!a.empty())
     {
         cout<<a.front()<<" ";
@@ -28,24 +57,3 @@ int main()
     }
 }
 // } Driver Code Ends
-
-
-//function Template for C++
-
-//Function to reverse the queue.
-queue<int> rev(queue<int> q)
-{
-    // add code here.
-    stack<int>s;
-    while(q.empty()==false)
-    {
-        s.push(q.front());
-        q.pop();
-    }
-    while(s.empty()==false)
-    {
-        q.push(s.top());
-        s.pop();
-    }
-    return q;
-}
