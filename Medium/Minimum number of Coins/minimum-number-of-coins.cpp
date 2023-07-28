@@ -12,18 +12,20 @@ public:
     vector<int> minPartition(int N)
     {
         // code here
-        vector<int>c;
-        vector<int>a={2000,500,200,100,50,20,10,5,2,1};
-        int res=0;
-        for(int i=0;i<a.size();i++)
+        int arr[]={2000,500,200,100,50,20,10,5,2,1},i=0;
+        vector<int> ans;
+        while(N>0)
         {
-            while(a[i]<=N)
+            if(arr[i]<=N)
             {
-                N-=a[i];
-                c.push_back(a[i]);
+                N=N-arr[i];
+                ans.push_back(arr[i]);
             }
+            else
+            i++;
         }
-        return c;
+        return ans;
+        
     }
 };
 
