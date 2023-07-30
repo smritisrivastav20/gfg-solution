@@ -8,7 +8,7 @@ class Solution {
     // Function to return Breadth First Traversal of given graph.
     vector<int> bfsOfGraph(int v, vector<int> adj[]) {
         // Code here
-        vector<bool>visit(v,0);
+      vector<bool>visit(v,0);
         vector<int>a;
         queue<int>q;
         visit[0]=1;
