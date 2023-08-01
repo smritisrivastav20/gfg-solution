@@ -5,41 +5,28 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    // // Function to return a list containing the DFS traversal of the graph.
-    // void dfs(vector<int>adj[],int s,vector<bool> t,vector<int>&a)
-    // { 
-    //     t[s]=1;
-    //     a.push_back(s);
-    //     for(int u:adj[s])
-    //     {
-    //         if(t[u]==false)
-    //         dfs(adj,u,t,a);
-    //     }
-       
-        
-    // }
-    // vector<int> dfsOfGraph(int v, vector<int> adj[]) {
-    //     // Code here
-    //     vector<int>a;
-    //     vector<bool> vis(v,0);
-    //     dfs(adj,0,vis,a);
-    //     return a;
-    // }
-    void dfs(int node, vector<int> adj[], vector<int>&vis, vector<int>&ans){
-        vis [node]=1;
-        ans.push_back(node);
-        for(auto it:adj[node]){
-            if(!vis[it]) dfs(it, adj, vis, ans);
+    // Function to return a list containing the DFS traversal of the graph.
+   void dfs(int i, vector<int>& out, vector<int> adj[], vector<bool>& vis) {
+        out.push_back(i);
+
+        for (auto node : adj[i]) {
+            if (!vis[node]) {
+                vis[node] = true;
+                dfs(node, out, adj, vis);
+            }
         }
     }
-    
-    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
-        // Code here
-        vector<int>vis(V, 0);
-        vector<int>ans;
-        dfs(0, adj, vis, ans);
-        return ans;
+
+    vector<int> dfsOfGraph(int v, vector<int> adj[]) {
+        vector<int> out;
+        vector<bool> vis(v, false);
+
+        vis[0] = true;
+        dfs(0, out, adj, vis);
+
+        return out;
     }
+
 };
 
 //{ Driver Code Starts.
